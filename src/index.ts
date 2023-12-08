@@ -1,15 +1,15 @@
 const express = require("express");
-const morgan = require("morgan");
+const db = require("./config/db");
 
 const app = express();
 const port = 3000;
-
-app.use(morgan("combined"));
 
 app.use(express.urlencoded({ extends: true }));
 app.use(express.json());
 
 const route = require("./routes");
+
+db.connect();
 
 // Init route
 route(app);
